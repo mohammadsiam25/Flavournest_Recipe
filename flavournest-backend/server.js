@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.static("public"));
 
 app.use("/", require("./routes/user"));
-app.use("/recipe", require("./routes/recipe"));
+app.use("/api/recipes", require("./routes/recipe"));
 
 app.listen(PORT, (err) => {
   console.log(`app is listening on port ${PORT}`);
