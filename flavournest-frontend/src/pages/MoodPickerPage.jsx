@@ -6,14 +6,6 @@ const CATEGORIES = [
   "Desserts", "Drinks", "Vegetarian", "Vegan", "Seafood",
   "Fast Food", "Soup", "Salad",
 ];
-import { useState } from "react";
-import "./MoodPickerPage.css";
-
-const CATEGORIES = [
-  "Any", "Breakfast", "Lunch", "Dinner", "Snacks",
-  "Desserts", "Drinks", "Vegetarian", "Vegan", "Seafood",
-  "Fast Food", "Soup", "Salad",
-];
 
 const WEATHERS = [
   { value: "Any", label: "Any Weather", emoji: "🌤️" },
