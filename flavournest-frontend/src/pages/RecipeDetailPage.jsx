@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import StarRating from "../components/StarRating";
@@ -35,14 +36,14 @@ export default function RecipeDetailPage({ recipeId, onBack }) {
   const [fav, setFav] = useState(false);
 
   useEffect(() => {
-    fetch(`/recipe/${recipeId}`)
+    fetch(`${API_URL}/recipe/${recipeId}`)
       .then((r) => r.json())
       .then(async (data) => {
         setRecipe(data);
         setLoading(false);
         if (data.createdBy) {
           try {
-            const userRes = await fetch(`/user/${data.createdBy}`);
+            const userRes = await fetch(`${API_URL}/user/${data.createdBy}`);
             const userData = await userRes.json();
             setCreator(userData);
           } catch {}

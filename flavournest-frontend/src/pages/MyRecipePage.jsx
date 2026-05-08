@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import RecipeCard from "../components/RecipeCard";
@@ -10,7 +11,7 @@ export default function MyRecipePage({ onEdit, onRecipeClick }) {
 
   const fetchMyRecipes = () => {
     if (!user) return;
-    fetch(`/recipe`)
+    fetch(`${API_URL}/recipe`)
       .then((r) => r.json())
       .then((data) => {
         const mine = Array.isArray(data)
@@ -28,7 +29,7 @@ export default function MyRecipePage({ onEdit, onRecipeClick }) {
 
   const handleDelete = async (id) => {
     if (!confirm("Delete this recipe?")) return;
-    await fetch(`/recipe/${id}`, {
+    await fetch(`${API_URL}/recipe/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

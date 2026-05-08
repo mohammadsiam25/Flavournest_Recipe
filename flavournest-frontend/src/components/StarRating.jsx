@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 
@@ -24,7 +25,7 @@ export default function StarRating({ recipe, onRated }) {
 
     setLoading(true);
     try {
-      const res = await fetch(`/recipe/${recipe._id}/rate`, {
+      const res = await fetch(`${API_URL}/recipe/${recipe._id}/rate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

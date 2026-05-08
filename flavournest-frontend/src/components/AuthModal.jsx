@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./AuthModal.css";
@@ -14,7 +15,7 @@ export default function AuthModal({ onClose }) {
     setError("");
     setLoading(true);
     try {
-      const endpoint = mode === "login" ? "/login" : "/signUp";
+      const endpoint = mode === "login" ? `${API_URL}/login` : `${API_URL}/signUp`;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

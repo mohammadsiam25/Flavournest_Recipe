@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./AddRecipePage.css";
@@ -82,7 +83,9 @@ export default function AddRecipePage({ editRecipe, onSuccess }) {
     fd.append("mealTime", form.mealTime);
     if (file) fd.append("file", file);
 
-    const url = editRecipe ? `/recipe/${editRecipe._id}` : "/recipe";
+    const url = editRecipe
+      ? `${API_URL}/recipe/${editRecipe._id}`
+      : `${API_URL}/recipe`;
     const method = editRecipe ? "PUT" : "POST";
 
     try {

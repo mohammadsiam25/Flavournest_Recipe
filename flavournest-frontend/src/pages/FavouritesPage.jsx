@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import RecipeCard from "../components/RecipeCard";
@@ -18,7 +19,7 @@ export default function FavouritesPage({ onRecipeClick }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/recipe`)
+    fetch(`${API_URL}/recipe`)
       .then((r) => r.json())
       .then((data) => {
         const favs = Array.isArray(data)

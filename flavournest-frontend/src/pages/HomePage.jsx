@@ -1,3 +1,4 @@
+import API_URL from "../api.js";
 import { useEffect, useState } from "react";
 import RecipeCard from "../components/RecipeCard";
 import "./HomePage.css";
@@ -27,8 +28,8 @@ export default function HomePage({ onAddRecipe, onRecipeClick }) {
   const fetchRecipes = (category = "") => {
     setLoading(true);
     const url = category
-      ? `/recipe?category=${encodeURIComponent(category)}`
-      : "/recipe";
+      ? `${API_URL}/recipe?category=${encodeURIComponent(category)}`
+      : `${API_URL}/recipe`;
     fetch(url)
       .then((r) => r.json())
       .then((data) => {
