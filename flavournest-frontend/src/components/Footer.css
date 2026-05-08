@@ -1,0 +1,33 @@
+.footer {
+  background: var(--charcoal);
+  color: rgba(255, 255, 255, 0.5);
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+.footer-brand-name {
+  font-family: var(--font-display);
+  color: var(--clay-light);
+  font-weight: 700;
+}
+.footer-copy {
+  font-size: 0.8rem;
+}
+@media (max-width: 600px) {
+  .footer-inner {
+    justify-content: center;
+    text-align: center;
+  }
+}

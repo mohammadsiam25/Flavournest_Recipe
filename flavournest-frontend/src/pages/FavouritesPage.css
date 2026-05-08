@@ -1,0 +1,127 @@
+.fav-page {
+  min-height: calc(100vh - 72px);
+  background: var(--cream);
+}
+
+.fav-header {
+  background: linear-gradient(135deg, #8b1a1a 0%, #c0392b 60%, #e8855a 100%);
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.fav-header::before {
+  content: "♥ ♥ ♥";
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 6rem;
+  opacity: 0.08;
+  letter-spacing: 1rem;
+  color: white;
+  pointer-events: none;
+}
+.fav-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.fav-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fav-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.fav-heart {
+  color: #ffabab;
+  animation: heartbeat 1.5s ease infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.2);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+}
+
+.fav-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.fav-body {
+  padding: 3rem 2rem 5rem;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-card {
+  height: 340px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    90deg,
+    var(--parchment) 25%,
+    #ede6dc 50%,
+    var(--parchment) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.empty-icon {
+  font-size: 3.5rem;
+}
+.empty-state h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--charcoal);
+}
+.empty-state p {
+  color: var(--stone);
+  font-size: 0.95rem;
+  max-width: 340px;
+}

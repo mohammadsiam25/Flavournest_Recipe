@@ -1,0 +1,124 @@
+.myrecipe-page {
+  min-height: calc(100vh - 72px);
+  background: var(--cream);
+}
+
+.myrecipe-header {
+  background: linear-gradient(135deg, var(--charcoal) 0%, #3d3530 100%);
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.myrecipe-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.myrecipe-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.myrecipe-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: white;
+}
+.myrecipe-subtitle {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.user-pill-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--clay);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.myrecipe-body {
+  padding: 3rem 2rem 5rem;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skeleton-card {
+  height: 340px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    90deg,
+    var(--parchment) 25%,
+    #ede6dc 50%,
+    var(--parchment) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.empty-state,
+.login-prompt {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.empty-icon,
+.prompt-icon {
+  font-size: 3.5rem;
+}
+.empty-state h3,
+.login-prompt h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--charcoal);
+}
+.empty-state p,
+.login-prompt p {
+  color: var(--stone);
+  font-size: 0.95rem;
+  max-width: 360px;
+  text-align: center;
+}
