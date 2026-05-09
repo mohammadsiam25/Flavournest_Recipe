@@ -43,14 +43,13 @@ export default function RecipeCard({
   };
 
   const imgSrc = recipe.coverImage
-    ? `/images/${recipe.coverImage}`
+    ? recipe.coverImage
     : `https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80`;
 
   const handleCardClick = () => {
     if (onRecipeClick) onRecipeClick(recipe._id);
   };
 
-  // ── Rating calculation ──
   const avgRating =
     recipe.averageRating ||
     (() => {

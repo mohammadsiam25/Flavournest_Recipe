@@ -76,7 +76,7 @@ export default function RecipeDetailPage({ recipeId, onBack }) {
         .filter(Boolean);
 
   const imgSrc = recipe?.coverImage
-    ? `/images/${recipe.coverImage}`
+    ? recipe.coverImage
     : "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=85";
 
   if (loading)
