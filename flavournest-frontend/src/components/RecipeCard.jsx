@@ -28,7 +28,6 @@ export default function RecipeCard({
     const newFav = !fav;
     setFav(newFav);
 
-    // localStorage sync
     try {
       const favs = JSON.parse(localStorage.getItem("fn_favourites") || "[]");
       let newFavs;
@@ -50,6 +49,16 @@ export default function RecipeCard({
   const handleCardClick = () => {
     if (onRecipeClick) onRecipeClick(recipe._id);
   };
+
+  // ── Rating calculation ──
+  const avgRating =
+    recipe.averageRating ||
+    (() => {
+      if (!recipe.ratings || recipe.ratings.length === 0) return 0;
+      const sum = recipe.ratings.reduce((acc, r) => acc + r.rating, 0);
+      return Math.round((sum / recipe.ratings.length) * 10) / 10;
+    })();
+  const totalRatings = recipe.totalRatings || recipe.ratings?.length || 0;
 
   return (
     <div
@@ -94,6 +103,35 @@ export default function RecipeCard({
               : String(recipe.ingredients).slice(0, 60) + "…"}
           </p>
         )}
+
+        {/* ── Star Rating Display ── */}
+        <div className="card-rating">
+          <div className="card-stars">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <svg
+                key={s}
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill={s <= Math.round(avgRating) ? "#F59E0B" : "none"}
+                stroke={s <= Math.round(avgRating) ? "#F59E0B" : "#D4CEC8"}
+                strokeWidth="2"
+              >
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            ))}
+          </div>
+          {avgRating > 0 ? (
+            <span className="card-rating-text">
+              {avgRating.toFixed(1)}
+              <span className="card-rating-count">({totalRatings})</span>
+            </span>
+          ) : (
+            <span className="card-rating-text card-rating-none">
+              No ratings yet
+            </span>
+          )}
+        </div>
 
         <div className="card-footer">
           {mode === "my" ? (

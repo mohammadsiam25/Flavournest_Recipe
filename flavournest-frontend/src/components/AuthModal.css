@@ -116,10 +116,14 @@
   color: var(--charcoal-medium);
 }
 
+/* ── input wrapper ── */
 .input-wrap {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
+/* Left icon — always present, pointer-events off */
 .input-icon {
   position: absolute;
   left: 14px;
@@ -127,11 +131,14 @@
   transform: translateY(-50%);
   color: var(--stone-light);
   pointer-events: none;
+  flex-shrink: 0;
+  z-index: 1;
 }
 
+/* The input itself: left padding for icon, right padding for toggle */
 .form-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  padding: 0.75rem 2.75rem 0.75rem 2.75rem;
   border: 1.5px solid var(--stone-light);
   border-radius: var(--radius-sm);
   font-size: 0.95rem;
@@ -148,6 +155,34 @@
 
 .form-input::placeholder {
   color: var(--stone-light);
+}
+
+/* Password show/hide toggle button */
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--stone-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s;
+  z-index: 1;
+}
+
+.password-toggle:hover {
+  color: var(--stone);
+}
+
+/* Email input only has left icon, no right toggle — shrink right padding */
+.input-wrap:not(:has(.password-toggle)) .form-input {
+  padding-right: 1rem;
 }
 
 .btn-submit {

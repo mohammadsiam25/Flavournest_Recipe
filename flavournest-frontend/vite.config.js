@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/recipe": "http://localhost:3000",
+      "/api": "http://localhost:3000",
       "/signUp": "http://localhost:3000",
       "/login": "http://localhost:3000",
       "/user": "http://localhost:3000",
