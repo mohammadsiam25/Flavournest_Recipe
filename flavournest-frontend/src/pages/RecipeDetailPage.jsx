@@ -36,7 +36,7 @@ export default function RecipeDetailPage({ recipeId, onBack }) {
   const [fav, setFav] = useState(false);
 
   useEffect(() => {
-    fetch(`${API_URL}/recipe/${recipeId}`)
+    fetch(`${API_URL}/api/recipes/${recipeId}`)
       .then((r) => r.json())
       .then(async (data) => {
         setRecipe(data);

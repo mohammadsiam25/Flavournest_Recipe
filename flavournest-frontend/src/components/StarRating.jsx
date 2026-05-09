@@ -25,7 +25,7 @@ export default function StarRating({ recipe, onRated }) {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/recipe/${recipe._id}/rate`, {
+      const res = await fetch(`${API_URL}/api/recipes/${recipe._id}/rate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

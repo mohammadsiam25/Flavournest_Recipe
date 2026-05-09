@@ -28,8 +28,8 @@ export default function HomePage({ onAddRecipe, onRecipeClick }) {
   const fetchRecipes = (category = "") => {
     setLoading(true);
     const url = category
-      ? `${API_URL}/recipe?category=${encodeURIComponent(category)}`
-      : `${API_URL}/recipe`;
+      ? `${API_URL}/api/recipes?category=${encodeURIComponent(category)}`
+      : `${API_URL}/api/recipes`;
     fetch(url)
       .then((r) => r.json())
       .then((data) => {

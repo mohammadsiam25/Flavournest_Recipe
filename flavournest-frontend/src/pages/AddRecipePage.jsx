@@ -84,8 +84,8 @@ export default function AddRecipePage({ editRecipe, onSuccess }) {
     if (file) fd.append("file", file);
 
     const url = editRecipe
-      ? `${API_URL}/recipe/${editRecipe._id}`
-      : `${API_URL}/recipe`;
+      ? `${API_URL}/api/recipes/${editRecipe._id}`
+      : `${API_URL}/api/recipes`;
     const method = editRecipe ? "PUT" : "POST";
 
     try {

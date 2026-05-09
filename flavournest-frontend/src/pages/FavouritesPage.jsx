@@ -19,7 +19,7 @@ export default function FavouritesPage({ onRecipeClick }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/recipe`)
+    fetch(`${API_URL}/api/recipes`)
       .then((r) => r.json())
       .then((data) => {
         const favs = Array.isArray(data)

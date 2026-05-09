@@ -11,7 +11,7 @@ export default function MyRecipePage({ onEdit, onRecipeClick }) {
 
   const fetchMyRecipes = () => {
     if (!user) return;
-    fetch(`${API_URL}/recipe`)
+    fetch(`${API_URL}/api/recipes`)
       .then((r) => r.json())
       .then((data) => {
         const mine = Array.isArray(data)
@@ -29,7 +29,7 @@ export default function MyRecipePage({ onEdit, onRecipeClick }) {
 
   const handleDelete = async (id) => {
     if (!confirm("Delete this recipe?")) return;
-    await fetch(`${API_URL}/recipe/${id}`, {
+    await fetch(`${API_URL}/api/recipes/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./MoodPickerPage.css";
+import API_URL from "../api.js";
 
 const CATEGORIES = [
   "Any",
@@ -69,7 +70,9 @@ export default function MoodPickerPage({ onRecipeClick }) {
       if (weather !== "Any") params.set("weather", weather);
       if (mealTime !== "Any") params.set("mealTime", mealTime);
 
-      const res = await fetch(`/recipe/mood-pick?${params.toString()}`);
+      const res = await fetch(
+        `${API_URL}/api/recipes/mood-pick?${params.toString()}`,
+      );
       if (!res.ok) throw new Error("No recipes found");
       const data = await res.json();
       setResult(data);
