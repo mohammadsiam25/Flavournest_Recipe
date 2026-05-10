@@ -14,7 +14,7 @@ const CATEGORY_EMOJIS = {
   Vegetarian: "🥦",
   Vegan: "🌿",
   Seafood: "🦐",
-  "Fast Food": "🍔",
+  FastFood: "🍔",
   Soup: "🍲",
   Salad: "🥙",
 };

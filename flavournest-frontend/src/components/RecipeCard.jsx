@@ -27,24 +27,19 @@ export default function RecipeCard({
     e.stopPropagation();
     const newFav = !fav;
     setFav(newFav);
-
     try {
       const favs = JSON.parse(localStorage.getItem("fn_favourites") || "[]");
-      let newFavs;
-      if (newFav) {
-        newFavs = [...new Set([...favs, recipe._id])];
-      } else {
-        newFavs = favs.filter((id) => id !== recipe._id);
-      }
+      const newFavs = newFav
+        ? [...new Set([...favs, recipe._id])]
+        : favs.filter((id) => id !== recipe._id);
       localStorage.setItem("fn_favourites", JSON.stringify(newFavs));
     } catch {}
-
     if (onFavToggle) onFavToggle(recipe._id, newFav);
   };
 
-  const imgSrc = recipe.coverImage
-    ? recipe.coverImage
-    : `https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80`;
+  const FALLBACK =
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80";
+  const imgSrc = recipe.coverImage || FALLBACK;
 
   const handleCardClick = () => {
     if (onRecipeClick) onRecipeClick(recipe._id);
@@ -71,8 +66,7 @@ export default function RecipeCard({
           alt={recipe.title}
           className="card-image"
           onError={(e) => {
-            e.target.src =
-              "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80";
+            e.target.src = FALLBACK;
           }}
         />
         <div className="card-overlay" />
@@ -93,17 +87,20 @@ export default function RecipeCard({
       </div>
 
       <div className="card-body">
+        {/* Title — always 2 lines */}
         <h3 className="card-title">{recipe.title}</h3>
+
+        {/* Ingredients — always 2 lines */}
         {recipe.ingredients && (
           <p className="card-ingredients">
             {Array.isArray(recipe.ingredients)
-              ? recipe.ingredients.slice(0, 3).join(", ") +
-                (recipe.ingredients.length > 3 ? "…" : "")
-              : String(recipe.ingredients).slice(0, 60) + "…"}
+              ? recipe.ingredients.slice(0, 5).join(", ") +
+                (recipe.ingredients.length > 5 ? "…" : "")
+              : String(recipe.ingredients).slice(0, 80) + "…"}
           </p>
         )}
 
-        {/* ── Star Rating Display ── */}
+        {/* Rating */}
         <div className="card-rating">
           <div className="card-stars">
             {[1, 2, 3, 4, 5].map((s) => (
@@ -123,12 +120,10 @@ export default function RecipeCard({
           {avgRating > 0 ? (
             <span className="card-rating-text">
               {avgRating.toFixed(1)}
-              <span className="card-rating-count">({totalRatings})</span>
+              <span className="card-rating-count"> ({totalRatings})</span>
             </span>
           ) : (
-            <span className="card-rating-text card-rating-none">
-              No ratings yet
-            </span>
+            <span className="card-rating-none">No ratings yet</span>
           )}
         </div>
 
@@ -141,11 +136,10 @@ export default function RecipeCard({
                   e.stopPropagation();
                   onEdit(recipe);
                 }}
-                title="Edit"
               >
                 <svg
-                  width="15"
-                  height="15"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -162,11 +156,10 @@ export default function RecipeCard({
                   e.stopPropagation();
                   onDelete(recipe._id);
                 }}
-                title="Delete"
               >
                 <svg
-                  width="15"
-                  height="15"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -174,9 +167,7 @@ export default function RecipeCard({
                 >
                   <polyline points="3 6 5 6 21 6" />
                   <path d="M19 6l-1 14H6L5 6" />
-                  <path d="M10 11v6" />
-                  <path d="M14 11v6" />
-                  <path d="M9 6V4h6v2" />
+                  <path d="M10 11v6M14 11v6M9 6V4h6v2" />
                 </svg>
                 Delete
               </button>

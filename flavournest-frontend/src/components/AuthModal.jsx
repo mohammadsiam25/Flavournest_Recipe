@@ -27,7 +27,9 @@ export default function AuthModal({ onClose }) {
       if (data.token) {
         login(data.user, data.token);
         onClose();
-      } else setError(data.error || data.message || "Something went wrong");
+      } else {
+        setError(data.error || data.message || "Something went wrong");
+      }
     } catch {
       setError("Network error. Check if the server is running.");
     }
@@ -72,6 +74,7 @@ export default function AuthModal({ onClose }) {
             onClick={() => {
               setMode("login");
               setError("");
+              setPassword("");
             }}
           >
             Login
@@ -81,6 +84,7 @@ export default function AuthModal({ onClose }) {
             onClick={() => {
               setMode("signup");
               setError("");
+              setPassword("");
             }}
           >
             Sign Up
@@ -90,52 +94,26 @@ export default function AuthModal({ onClose }) {
         <div className="modal-form">
           {error && <div className="form-error">{error}</div>}
 
-          {/* Email Field */}
+          {/* Email */}
           <div className="form-group">
             <label className="form-label">Email</label>
-            <div className="input-wrap">
-              <svg
-                className="input-icon"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              <input
-                className="form-input"
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-                autoComplete="email"
-              />
-            </div>
+            <input
+              className="form-input-simple"
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+              autoComplete="email"
+            />
           </div>
 
-          {/* Password Field */}
+          {/* Password */}
           <div className="form-group">
             <label className="form-label">Password</label>
-            <div className="input-wrap">
-              <svg
-                className="input-icon"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
+            <div className="pw-wrap">
               <input
-                className="form-input"
+                className="form-input-simple pw-input"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 value={password}
@@ -145,19 +123,17 @@ export default function AuthModal({ onClose }) {
                   mode === "login" ? "current-password" : "new-password"
                 }
               />
-              {/* Show/Hide Password Toggle */}
               <button
                 type="button"
-                className="password-toggle"
+                className="pw-toggle"
                 onClick={() => setShowPassword((v) => !v)}
                 tabIndex={-1}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  /* Eye-off icon */
                   <svg
-                    width="16"
-                    height="16"
+                    width="17"
+                    height="17"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -168,10 +144,9 @@ export default function AuthModal({ onClose }) {
                     <line x1="1" y1="1" x2="23" y2="23" />
                   </svg>
                 ) : (
-                  /* Eye icon */
                   <svg
-                    width="16"
-                    height="16"
+                    width="17"
+                    height="17"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
