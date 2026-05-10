@@ -93,7 +93,7 @@ const addRecipe = async (req, res) => {
       category: category || "Lunch",
       weather: weather || "Any",
       mealTime: mealTime || "Any",
-      coverImage: req.file ? req.file.filename : "",
+      coverImage: req.file ? req.file.path : "",
       createdBy: req.user.id,
     });
     return res.json(newRecipe);
@@ -126,7 +126,7 @@ const editRecipe = async (req, res) => {
           .map((s) => s.trim())
           .filter(Boolean);
 
-    let coverImage = req.file?.filename ? req.file.filename : recipe.coverImage;
+    const coverImage = req.file ? req.file.path : recipe.coverImage;
 
     const updated = await Recipes.findByIdAndUpdate(
       req.params.id,

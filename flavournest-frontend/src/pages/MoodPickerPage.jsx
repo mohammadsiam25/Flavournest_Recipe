@@ -70,7 +70,9 @@ export default function MoodPickerPage({ onRecipeClick }) {
       if (weather !== "Any") params.set("weather", weather);
       if (mealTime !== "Any") params.set("mealTime", mealTime);
 
-      const res = await fetch(`${API_URL}/api/recipes/mood-pick?${params.toString()}`);
+      const res = await fetch(
+        `${API_URL}/api/recipes/mood-pick?${params.toString()}`,
+      );
       if (!res.ok) throw new Error("No recipes found");
       const data = await res.json();
       setResult(data);
@@ -86,7 +88,7 @@ export default function MoodPickerPage({ onRecipeClick }) {
   };
 
   const imgSrc = result?.recipe?.coverImage
-    ? `/images/${result.recipe.coverImage}`
+    ? result.recipe.coverImage
     : "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80";
 
   return (

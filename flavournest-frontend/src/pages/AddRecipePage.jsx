@@ -51,7 +51,7 @@ export default function AddRecipePage({ editRecipe, onSuccess }) {
         mealTime: editRecipe.mealTime || "Any",
       });
       if (editRecipe.coverImage) {
-        setPreview(`/images/${editRecipe.coverImage}`);
+        setPreview(editRecipe.coverImage);
       }
     }
   }, [editRecipe]);
