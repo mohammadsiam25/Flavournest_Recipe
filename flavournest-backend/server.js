@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 app.use("/api/recipes", recipeRoutes);
+app.get("/health", (req, res) => res.json({ status: "ok" }));
 app.use("/", userRoutes);
 
 const PORT = process.env.PORT || 3000;
