@@ -2,6 +2,7 @@ import API_URL from "../api.js";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import StarRating from "../components/StarRating";
+import CommentSection from "../components/CommentSection";
 import "../components/StarRating.css";
 
 const CATEGORY_EMOJIS = {
@@ -227,6 +228,11 @@ export default function RecipeDetailPage({ recipeId, onBack }) {
             </div>
             <div style={styles.instructions}>{recipe.instructions}</div>
           </div>
+        </div>
+
+        {/* ── Comment Section ── */}
+        <div style={{ marginTop: "2rem" }}>
+          <CommentSection recipeId={recipeId} />
         </div>
 
         <div style={{ textAlign: "center", marginTop: "2.5rem" }}>

@@ -10,6 +10,11 @@ const {
   removeRating,
   upload,
 } = require("../controller/recipe");
+const {
+  getComments,
+  addComment,
+  deleteComment,
+} = require("../controller/comment");
 const verifyToken = require("../middleware/auth");
 const router = express.Router();
 
@@ -21,5 +26,9 @@ router.put("/:id", upload.single("file"), verifyToken, editRecipe);
 router.delete("/:id", verifyToken, deleteRecipe);
 router.post("/:id/rate", verifyToken, rateRecipe);
 router.delete("/:id/rate", verifyToken, removeRating);
+
+router.get("/:id/comments", getComments);
+router.post("/:id/comments", verifyToken, addComment);
+router.delete("/:id/comments/:commentId", verifyToken, deleteComment);
 
 module.exports = router;
